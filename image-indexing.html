@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="description" content="OP now extracts and stores image metadata from indexed pages, making images available in API responses and on server listings.">
+  <meta property="og:image" content="https://docs.octothorp.es/assets/libre-poundo.gif">
+  <meta name="keyword" content="keywordOnlyDemo">
+
+  <link rel="canonical" href="https://something.github.io/image-indexing">
+
+
+  <title>Image Indexing - OP DEV DEMO</title>
+  <link rel="stylesheet" href="assets/css/main.css ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/9fda07d5f7.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/css/custom-grid.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<!-- Prism.js for syntax highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+
+
+  
+    
+
+<link rel="preload" as="fetch" href="https://next.octothorp.es/?uri=https://something.github.io/image-indexing">
+
+
+
+
+<script
+async=""
+defer=""
+type="module"
+src="components/octo-thorpe.js"></script>
+<script
+async=""
+defer=""
+type="module"
+data-register=""
+src="ring.js"></script>
+<script
+async=""
+defer=""
+type="module"
+src="components/octo-backlinks.js"></script>
+
+
+    <link rev="octo:octothorpes" href="*">
+    <link rev="octo:octothorpes" href="https://demo.ideastore.dev">
+
+
+  
+
+  <link rel="stylesheet" href="/assets/css/main.css"" />
+  
+      <link rel="octo:endorses" href="https://octothorpenty.glitch.me/">
+  
+
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+  <div style="flex: 1;">
+    <!-- <h1 class="u-relative bg-warning text-white p-2">7.27.24 The Octothorpes protocol is currently under maintenance and will be back up shortly</h1> -->
+    <section class="bg-white">
+      <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
+        <div class="header-brand">
+          <div class="nav-item no-hover">
+            <a href="https://something.github.io">
+              <h4 class="tracking-tight"><span class="octo" style="">&num;</span> OP DEV DEMO</h4>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-btn" style="cursor: pointer; position: relative; margin-left: auto;">
+          <input type="checkbox" id="header-btn" class="menu-checkbox">
+          <label for="header-btn" class="menu-button u-none-md">☰</label>
+          <div class="menu-content bg-blue-300">
+            <div class="nav-item">
+  <a href="https://docs.octothorp.es" target="_blank">Documentation</a>
+</div>
+<div class="nav-item">
+  <a href="https://github.com/stucco-software/octothorp.es" target="_blank">Protocol Source</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorpes.neocities.org/">Neocities Demo</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorped-wordpress.pikapod.net/how-it-works/">Wordpress Demo</a>
+</div>
+<div class="nav-item">
+  <a href="mailto:admin@octothorp.es?subject=Octothorpes">Contact</a>
+</div>
+
+              <a class="btn btn-black btn--sm py-0" href="https://octothorp.es/">Octothorp.es</a>
+          </div>
+      </div>
+        <div class="header-nav bg-white" id="header-menu" role="button">
+          <div class="nav-right text-sm">
+            <div class="nav-item">
+  <a href="https://docs.octothorp.es" target="_blank">Documentation</a>
+</div>
+<div class="nav-item">
+  <a href="https://github.com/stucco-software/octothorp.es" target="_blank">Protocol Source</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorpes.neocities.org/">Neocities Demo</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorped-wordpress.pikapod.net/how-it-works/">Wordpress Demo</a>
+</div>
+<div class="nav-item">
+  <a href="mailto:admin@octothorp.es?subject=Octothorpes">Contact</a>
+</div>
+
+            <div class="nav-item">
+              <a class="btn btn-black btn--sm py-0" href="https://octothorp.es/">Octothorp.es</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <section class="mb-12 px-12-lg px-4">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-7 offset-4 ml-3">
+          <h1 class="octo big">&num;</h1>
+          <h1 class="headline-3">Image Indexing</h1>
+          <div class="font-secondary subtitle"><p>OP now extracts and stores image metadata from indexed pages, making images available in API responses and on server listings.</p>
+</div>
+          
+          <div class="mt-1" style="display: flex; align-items: center; gap: 0.75rem;">
+            
+            <span class="tag tag--dark" style="font-size: 1rem;">v0.6</span>
+            
+          </div>
+          
+          <div class="frame bg-light u-shadow-lg" id="docs-backlinks-frame" style="display:none;">
+  <div class="frame__body">
+    <div class="px-2 py-2">
+      <div class="text-gray-800">
+        <p><strong>Related documentation</strong></p>
+        <section class="demo-docs-backlinks"
+                 data-url="https://something.github.io/image-indexing"
+                 data-server="https://next.octothorp.es/">
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  (async () => {
+    const root = document.querySelector('.demo-docs-backlinks')
+    const { url } = root.dataset
+    const servers = root.dataset.server
+      .split(',')
+      .map(s => s.trim().replace(/\/$/, ''))
+      .filter(Boolean)
+    const showLabels = servers.length > 1
+
+    const makeEl = (tag, text) => {
+      const node = document.createElement(tag)
+      if (text != null) node.textContent = text
+      return node
+    }
+
+    const renderForServer = async (server) => {
+      const endpoint = `${server}/get/everything/linked?s=docs.octothorp.es&o=${encodeURIComponent(url)}`
+
+      try {
+        const res = await fetch(endpoint)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        const results = data.results ?? []
+        if (results.length === 0) return null
+
+        const wrapper = document.createElement('div')
+        wrapper.className = 'op-docs-backlinks-server'
+
+        if (showLabels) {
+          const h = makeEl('h4', server)
+          h.className = 'op-docs-backlinks-server__label'
+          wrapper.appendChild(h)
+        }
+
+        const ul = document.createElement('ul')
+        ul.className = 'op-backlinks'
+
+        results.forEach((item) => {
+          const uri = item['@id'] ?? item.uri ?? ''
+          const title = item.title ?? uri
+
+          const li = document.createElement('li')
+          const a = document.createElement('a')
+          a.href = uri
+          a.textContent = title
+          a.target = '_blank'
+          a.rel = 'octo:octothorpes noopener'
+          li.appendChild(a)
+          ul.appendChild(li)
+        })
+
+        wrapper.appendChild(ul)
+        return wrapper
+      } catch (_) {
+        return null
+      }
+    }
+
+    const sections = (await Promise.all(servers.map(renderForServer))).filter(Boolean)
+    if (sections.length === 0) return
+
+    root.replaceChildren(...sections)
+    document.getElementById('docs-backlinks-frame').style.display = ''
+  })()
+</script>
+
+
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-4 ">
+        <div class="sidecar">
+          
+          <div class="frame bg-light u-shadow-lg">
+
+            <div class="frame__body">
+              <div class="px-2 py-2  ">
+                <div class="text-gray-800">
+                  
+                  <p style="border-bottom: 1px solid;"><strong>Here's what this page has sent to OP<span class="icon subtitle">
+                    <i class="fa-solid fa-wrapper fa-hand-point-down"></i>
+                  </span></strong></p>
+                  
+                  
+                     <section class="demo-record">
+  <div class="op-page-record"
+       data-url="https://something.github.io/image-indexing"
+       data-server="https://next.octothorp.es/">
+    <noscript>JavaScript required to show the indexed record.</noscript>
+  </div>
+</section>
+
+<script type="module">
+  (async () => {
+    const root = document.querySelector('.op-page-record')
+    const { url } = root.dataset
+    const servers = root.dataset.server
+      .split(',')
+      .map(s => s.trim().replace(/\/$/, ''))
+      .filter(Boolean)
+    const showLabels = servers.length > 1
+
+    const EM_DASH = '—'
+
+    const makeEl = (tag, text) => {
+      const node = document.createElement(tag)
+      if (text != null) node.textContent = text
+      return node
+    }
+
+    const appendRow = (dl, term, valueNode) => {
+      dl.appendChild(makeEl('dt', term))
+      const dd = document.createElement('dd')
+      if (valueNode instanceof Node) {
+        dd.appendChild(valueNode)
+      } else {
+        dd.textContent = valueNode ?? EM_DASH
+      }
+      dl.appendChild(dd)
+    }
+
+    const formatDate = (value) => {
+      if (!value) return EM_DASH
+      const d = new Date(value)
+      if (isNaN(d.getTime())) return EM_DASH
+      return d.toISOString()
+    }
+
+    const isHttpUri = (s) => typeof s === 'string' && /^https?:\/\//.test(s)
+
+    const renderOctothorpes = (list) => {
+      const frag = document.createDocumentFragment()
+      if (!list || list.length === 0) {
+        frag.appendChild(document.createTextNode(EM_DASH))
+        return frag
+      }
+
+      const hashtags = list.filter(o => typeof o === 'string')
+      const links = list.filter(o => o && typeof o === 'object')
+
+      if (hashtags.length > 0) {
+        const p = document.createElement('p')
+        p.appendChild(makeEl('strong', 'Hashtags: '))
+        hashtags.forEach((tag, i) => {
+          if (i > 0) p.appendChild(document.createTextNode(', '))
+          p.appendChild(makeEl('code', tag))
+        })
+        frag.appendChild(p)
+      }
+
+      links.forEach((o) => {
+        const p = document.createElement('p')
+        p.appendChild(makeEl('strong', `${o.type ?? ''}: `))
+        if (isHttpUri(o.uri)) {
+          const a = document.createElement('a')
+          a.href = o.uri
+          a.textContent = o.uri
+          p.appendChild(a)
+        } else {
+          p.appendChild(document.createTextNode(o.uri ?? ''))
+        }
+        if (Array.isArray(o.terms) && o.terms.length > 0) {
+          p.appendChild(document.createTextNode(' '))
+          o.terms.forEach((term, i) => {
+            if (i > 0) p.appendChild(document.createTextNode(', '))
+            p.appendChild(makeEl('code', `#${term}`))
+          })
+        }
+        frag.appendChild(p)
+      })
+
+      return frag
+    }
+
+    const renderForServer = async (server) => {
+      const wrapper = document.createElement('div')
+      wrapper.className = 'op-record-server'
+
+      if (showLabels) {
+        const h = makeEl('h4', server)
+        h.className = 'op-record-server__label'
+        wrapper.appendChild(h)
+      }
+
+      const endpoint = `${server}/get/everything/posted?s=${encodeURIComponent(url)}&match=exact`
+
+      try {
+        const res = await fetch(endpoint)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        const blob = data.results?.[0]
+        if (!blob) {
+          const p = document.createElement('p')
+          p.appendChild(makeEl('em', 'Not yet indexed. Reload the page after a moment.'))
+          wrapper.appendChild(p)
+          return wrapper
+        }
+
+        const dl = document.createElement('dl')
+        dl.className = 'op-record'
+
+        appendRow(dl, 'URI', makeEl('code', blob['@id'] ?? ''))
+        appendRow(dl, 'Title', blob.title ?? EM_DASH)
+        appendRow(dl, 'Description', blob.description ?? EM_DASH)
+        const imageUrl = typeof blob.image === 'string' ? blob.image.split(',')[0].trim() : null
+        if (imageUrl && isHttpUri(imageUrl)) {
+          const a = document.createElement('a')
+          a.href = imageUrl
+          a.target = '_blank'
+          a.rel = 'noopener'
+          const img = document.createElement('img')
+          img.src = imageUrl
+          img.style.cssText = 'max-height:80px;width:auto;display:block;'
+          a.appendChild(img)
+          appendRow(dl, 'Image', a)
+        } else {
+          appendRow(dl, 'Image', blob.image ?? EM_DASH)
+        }
+        appendRow(dl, 'Indexed', formatDate(blob.date))
+        appendRow(dl, 'Post Date', formatDate(blob.postDate) ?? '')
+        appendRow(dl, 'Octothorpes', renderOctothorpes(blob.octothorpes ?? []))
+
+        wrapper.appendChild(dl)
+
+        const apiLink = document.createElement('p')
+        apiLink.style.marginTop = '0.5rem'
+        const a = document.createElement('a')
+        a.href = `${server}/get/everything/posted/debug?s=${encodeURIComponent(url)}&match=exact`
+        a.textContent = 'API source'
+        a.target = '_blank'
+        a.rel = 'noopener'
+        apiLink.appendChild(a)
+        wrapper.appendChild(apiLink)
+      } catch (e) {
+        const p = document.createElement('p')
+        p.appendChild(makeEl('em', `Error loading record: ${e.message}`))
+        wrapper.appendChild(p)
+      }
+
+      return wrapper
+    }
+
+    const sections = await Promise.all(servers.map(renderForServer))
+    root.replaceChildren(...sections)
+  })()
+</script>
+
+                  
+                  <br>
+                  
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="frame bg-light u-shadow-lg">
+            <div class="frame__body">
+              <div class="px-2 py-2">
+                <div class="text-gray-800">
+                  <p><strong>BACKLINKS</strong></p>
+                  <section class="demo-backlinks"
+         data-url="https://something.github.io/image-indexing"
+         data-server="https://next.octothorp.es/">
+  <noscript>JavaScript required to show backlinks.</noscript>
+</section>
+
+<script type="module">
+  (async () => {
+    const root = document.querySelector('.demo-backlinks')
+    const { url } = root.dataset
+    const servers = root.dataset.server
+      .split(',')
+      .map(s => s.trim().replace(/\/$/, ''))
+      .filter(Boolean)
+    const showLabels = servers.length > 1
+
+    const makeEl = (tag, text) => {
+      const node = document.createElement(tag)
+      if (text != null) node.textContent = text
+      return node
+    }
+
+    const renderForServer = async (server) => {
+      const wrapper = document.createElement('div')
+      wrapper.className = 'op-backlinks-server'
+
+      if (showLabels) {
+        const h = makeEl('h4', server)
+        h.className = 'op-backlinks-server__label'
+        wrapper.appendChild(h)
+      }
+
+      const endpoint = `${server}/get/everything/backlinked?o=${encodeURIComponent(url)}&match=exact`
+
+      try {
+        const res = await fetch(endpoint)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        const results = data.results ?? []
+
+        if (results.length === 0) {
+          const p = document.createElement('p')
+          p.appendChild(makeEl('em', 'No backlinks yet.'))
+          wrapper.appendChild(p)
+          return wrapper
+        }
+
+        const ul = document.createElement('ul')
+        ul.className = 'op-backlinks'
+
+        results.forEach((item) => {
+          const uri = item['@id'] ?? ''
+          const title = item.title ?? uri
+          const description = item.description ?? ''
+
+          const li = document.createElement('li')
+
+          const a = document.createElement('a')
+          a.href = uri
+          a.textContent = title
+          li.appendChild(a)
+
+          if (description) {
+            const small = document.createElement('small')
+            small.textContent = description
+            li.appendChild(document.createElement('br'))
+            li.appendChild(small)
+          }
+
+          ul.appendChild(li)
+        })
+
+        wrapper.appendChild(ul)
+      } catch (e) {
+        const p = document.createElement('p')
+        p.appendChild(makeEl('em', `Error loading backlinks: ${e.message}`))
+        wrapper.appendChild(p)
+      }
+
+      return wrapper
+    }
+
+    const sections = await Promise.all(servers.map(renderForServer))
+    root.replaceChildren(...sections)
+  })()
+</script>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+        <div class="col-md-7 ml-3">
+            <article>
+                
+
+
+
+  <section class="demo-commentary">
+    <p>You can see in the API response that the standard <code class="language-plaintext highlighter-rouge">meta property="og:image"</code> value from this page has been picked up as the value for the URL’s corresponding <code class="language-plaintext highlighter-rouge">image</code> value.</p>
+
+
+  </section>
+
+
+
+  
+  <section class="demo-live">
+    <h3>In action on this page</h3>
+    
+
+<meta property="og:image" content="https://docs.octothorp.es/assets/libre-poundo.gif" />
+
+
+  </section>
+
+  
+  <section class="demo-source">
+    <h3>Raw HTML</h3>
+    <pre><code class="language-html">&lt;meta property=&quot;og:image&quot; content=&quot;https://docs.octothorp.es/assets/libre-poundo.gif&quot; /&gt;</code></pre>
+  </section>
+  
+
+
+            </article>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <footer style="padding: 1rem; text-align: center; border-top: 1px solid #eee;">
+    <small>From the <a href="https://ideastore.dev">Idea Store</a> and <a href="https://stucco.software/">Stucco Software</a></small>
+  </footer>
+  </body>
+</html>

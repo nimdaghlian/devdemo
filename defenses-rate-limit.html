@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="description" content="Live demo of per-origin indexing rate limits.">
+  <meta property="og:image" content="https://something.github.io/assets/octomark.png">
+  <meta name="keyword" content="keywordOnlyDemo">
+
+  <link rel="canonical" href="https://something.github.io/defenses-rate-limit">
+
+
+  <title>Defenses: Rate Limiting - OP DEV DEMO</title>
+  <link rel="stylesheet" href="assets/css/main.css ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/9fda07d5f7.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/css/custom-grid.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<!-- Prism.js for syntax highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+
+
+  
+    
+
+<link rel="preload" as="fetch" href="https://next.octothorp.es/?uri=https://something.github.io/defenses-rate-limit">
+
+
+
+
+<script
+async=""
+defer=""
+type="module"
+src="components/octo-thorpe.js"></script>
+<script
+async=""
+defer=""
+type="module"
+data-register=""
+src="ring.js"></script>
+<script
+async=""
+defer=""
+type="module"
+src="components/octo-backlinks.js"></script>
+
+
+    <link rev="octo:octothorpes" href="*">
+    <link rev="octo:octothorpes" href="https://demo.ideastore.dev">
+
+
+  
+
+  <link rel="stylesheet" href="/assets/css/main.css"" />
+  
+      <link rel="octo:endorses" href="https://octothorpenty.glitch.me/">
+  
+
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+  <div style="flex: 1;">
+    <!-- <h1 class="u-relative bg-warning text-white p-2">7.27.24 The Octothorpes protocol is currently under maintenance and will be back up shortly</h1> -->
+    <section class="bg-white">
+      <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
+        <div class="header-brand">
+          <div class="nav-item no-hover">
+            <a href="https://something.github.io">
+              <h6 class="tracking-tight"><span class="octo" style="">&num;</span> OP DEV DEMO</h6>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item nav-btn" style="cursor: pointer; position: relative; margin-left: auto;">
+          <input type="checkbox" id="header-btn" class="menu-checkbox">
+          <label for="header-btn" class="menu-button u-none-md">☰</label>
+          <div class="menu-content bg-blue-300">
+            <div class="nav-item">
+  <a href="https://docs.octothorp.es" target="_blank">Documentation</a>
+</div>
+<div class="nav-item">
+  <a href="https://github.com/stucco-software/octothorp.es" target="_blank">Protocol Source</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorpes.neocities.org/">Neocities Demo</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorped-wordpress.pikapod.net/how-it-works/">Wordpress Demo</a>
+</div>
+<div class="nav-item">
+  <a href="mailto:admin@octothorp.es?subject=Octothorpes">Contact</a>
+</div>
+
+              <a class="btn btn-black btn--sm py-0" href="https://octothorp.es/">Octothorp.es</a>
+          </div>
+      </div>
+        <div class="header-nav bg-white" id="header-menu" role="button">
+          <div class="nav-right text-sm">
+            <div class="nav-item">
+  <a href="https://docs.octothorp.es" target="_blank">Documentation</a>
+</div>
+<div class="nav-item">
+  <a href="https://github.com/stucco-software/octothorp.es" target="_blank">Protocol Source</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorpes.neocities.org/">Neocities Demo</a>
+</div>
+<div class="nav-item">
+  <a rel="octo:octothorpes" href="https://octothorped-wordpress.pikapod.net/how-it-works/">Wordpress Demo</a>
+</div>
+<div class="nav-item">
+  <a href="mailto:admin@octothorp.es?subject=Octothorpes">Contact</a>
+</div>
+
+            <div class="nav-item">
+              <a class="btn btn-black btn--sm py-0" href="https://octothorp.es/">Octothorp.es</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <section class="mb-12 px-12-lg px-4">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-7 offset-4 ml-3">
+          <h1 class="octo big">&num;</h1>
+          <h1 class="headline-3">Defenses: Rate Limiting</h1>
+          <div class="font-secondary subtitle"><p>Live demo of per-origin indexing rate limits.</p>
+</div>
+          
+          <div class="mt-1" style="display: flex; align-items: center; gap: 0.75rem;">
+            
+            <span class="tag tag--dark" style="font-size: 0.75rem;">v0.6</span>
+            
+            
+          </div>
+          
+
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-4 ">
+        <div class="sidecar">
+          
+          <div class="frame bg-light u-shadow-lg">
+
+            <div class="frame__body">
+              <div class="px-2 py-2  ">
+                <div class="text-gray-800">
+                  
+                  <p style="border-bottom: 1px solid;"><strong>This page has been octothorped with these terms <span class="icon subtitle">
+                    <i class="fa-solid fa-wrapper fa-hand-point-down"></i>
+                  </span></strong></p>
+                  
+                  
+                  
+                  <octo-thorpe o="demo"></octo-thorpe>
+                  
+                  <br>
+                  
+                  
+                  <octo-thorpe o="security"></octo-thorpe>
+                  
+                  <br>
+                  
+                  
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="frame bg-light u-shadow-lg">
+            <div class="frame__body">
+              <div class="px-2 py-2">
+                <div class="text-gray-800">
+                  <p><strong>BACKLINKS</strong></p>
+                  <section class="demo-backlinks"
+         data-url="https://something.github.io/defenses-rate-limit"
+         data-server="https://next.octothorp.es/">
+  <noscript>JavaScript required to show backlinks.</noscript>
+</section>
+
+<script type="module">
+  (async () => {
+    const root = document.querySelector('.demo-backlinks')
+    const { url } = root.dataset
+    const servers = root.dataset.server
+      .split(',')
+      .map(s => s.trim().replace(/\/$/, ''))
+      .filter(Boolean)
+    const showLabels = servers.length > 1
+
+    const makeEl = (tag, text) => {
+      const node = document.createElement(tag)
+      if (text != null) node.textContent = text
+      return node
+    }
+
+    const renderForServer = async (server) => {
+      const wrapper = document.createElement('div')
+      wrapper.className = 'op-backlinks-server'
+
+      if (showLabels) {
+        const h = makeEl('h4', server)
+        h.className = 'op-backlinks-server__label'
+        wrapper.appendChild(h)
+      }
+
+      const endpoint = `${server}/get/everything/backlinked?o=${encodeURIComponent(url)}&match=exact`
+
+      try {
+        const res = await fetch(endpoint)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        const results = data.results ?? []
+
+        if (results.length === 0) {
+          const p = document.createElement('p')
+          p.appendChild(makeEl('em', 'No backlinks yet.'))
+          wrapper.appendChild(p)
+          return wrapper
+        }
+
+        const ul = document.createElement('ul')
+        ul.className = 'op-backlinks'
+
+        results.forEach((item) => {
+          const uri = item['@id'] ?? ''
+          const title = item.title ?? uri
+          const description = item.description ?? ''
+
+          const li = document.createElement('li')
+
+          const a = document.createElement('a')
+          a.href = uri
+          a.textContent = title
+          li.appendChild(a)
+
+          if (description) {
+            const small = document.createElement('small')
+            small.textContent = description
+            li.appendChild(document.createElement('br'))
+            li.appendChild(small)
+          }
+
+          ul.appendChild(li)
+        })
+
+        wrapper.appendChild(ul)
+      } catch (e) {
+        const p = document.createElement('p')
+        p.appendChild(makeEl('em', `Error loading backlinks: ${e.message}`))
+        wrapper.appendChild(p)
+      }
+
+      return wrapper
+    }
+
+    const sections = await Promise.all(servers.map(renderForServer))
+    root.replaceChildren(...sections)
+  })()
+</script>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+        <div class="col-md-7 ml-3">
+            <article>
+                <style>
+  .attack-block { margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #ddd; border-radius: 6px; }
+  .attack-block summary { cursor: pointer; font-weight: bold; font-size: 1.05rem; }
+  .attack-block[open] summary { margin-bottom: 0.75rem; }
+  .attack-trigger { background: #f5f5f5; padding: 0.5rem; border-radius: 4px; overflow-x: auto; font-family: monospace; font-size: 0.85rem; white-space: pre; }
+  .attack-expected { color: #555; font-style: italic; }
+  .attack-run-btn { background: #1a6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+  .attack-run-btn:hover { background: #185; }
+  .attack-run-btn:disabled { background: #999; cursor: not-allowed; }
+  .attack-result { margin-top: 0.75rem; padding: 0.75rem; border-radius: 4px; display: none; font-family: monospace; font-size: 0.85rem; }
+  .attack-result.show { display: block; }
+  .attack-result.pass { background: #e8f5e9; border: 1px solid #1a6; }
+  .attack-result.fail { background: #ffebee; border: 1px solid #c62828; }
+  .attack-badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 3px; font-weight: bold; font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .attack-badge.pass { background: #1a6; color: white; }
+  .attack-badge.fail { background: #c62828; color: white; }
+</style>
+
+<script>
+(function () {
+  const OP_SERVER = 'https://octothorp.es'
+
+  async function runSingleRequest(url) {
+    const res = await fetch(url)
+    const text = await res.text()
+    return { status: res.status, ok: res.ok, body: text }
+  }
+
+  async function runAttack(slug, config) {
+    const btn = document.querySelector(`[data-attack="${slug}"]`)
+    const resultEl = document.querySelector(`.attack-result[data-for="${slug}"]`)
+    if (!btn || !resultEl) return
+    btn.disabled = true
+    resultEl.classList.remove('show', 'pass', 'fail')
+    resultEl.textContent = 'Running...'
+    resultEl.classList.add('show')
+
+    try {
+      let result
+      if (config.multi) {
+        const responses = await Promise.all(
+          Array.from({ length: config.multi }, () => runSingleRequest(config.url))
+        )
+        const last = responses[responses.length - 1]
+        result = { status: last.status, ok: last.ok, body: last.body, attempts: responses.length }
+      } else {
+        result = await runSingleRequest(config.url)
+      }
+
+      const matched = !result.ok &&
+        result.body.toLowerCase().includes(config.expectedSubstring.toLowerCase())
+
+      const badge = matched ? 'pass' : 'fail'
+      const label = matched ? 'DEFENSE WORKED' : 'DEFENSE DID NOT MATCH'
+      resultEl.classList.add(badge)
+      resultEl.innerHTML = `<span class="attack-badge ${badge}">${label}</span>
+<div>HTTP ${result.status}${result.attempts ? ` (after ${result.attempts} requests)` : ''}</div>
+<div>${escapeHtml(result.body).slice(0, 500)}</div>`
+    } catch (e) {
+      resultEl.classList.add('fail')
+      resultEl.innerHTML = `<span class="attack-badge fail">NETWORK ERROR</span>
+<div>${escapeHtml(e.message)}</div>`
+    } finally {
+      btn.disabled = false
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]))
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-attack]')
+    if (!btn) return
+    const slug = btn.getAttribute('data-attack')
+    const configAttr = btn.getAttribute('data-config')
+    if (!configAttr) return
+    let config
+    try {
+      config = JSON.parse(configAttr)
+    } catch (err) {
+      console.error('Invalid data-config for', slug, err)
+      return
+    }
+    if (!config.url.startsWith('http')) {
+      config.url = OP_SERVER + (config.url.startsWith('/') ? '' : '/') + config.url
+    }
+    runAttack(slug, config)
+  })
+})()
+</script>
+
+<p>The OP server limits each origin to <code class="language-plaintext highlighter-rouge">MAX_INDEXING_REQUESTS</code> (10) indexing requests per 60-second window.</p>
+
+<h3 id="attack-rate-limit">Rate limit exceeded</h3>
+
+<p><strong>What it tries to do:</strong> Fire 11 rapid indexing requests from the same origin, exceeding the per-origin limit.</p>
+
+<p><strong>Trigger:</strong></p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">({</span><span class="na">length</span><span class="p">:</span> <span class="mi">11</span><span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://octothorp.es/index?uri=...</span><span class="dl">'</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p><strong>Expected defense:</strong> The 11th request returns <code class="language-plaintext highlighter-rouge">Rate limit exceeded. Please try again later.</code></p>
+
+<p><button class="attack-run-btn" data-attack="rate-limit" data-config="{&quot;url&quot;:&quot;https://octothorp.es/index?uri=https%3A%2F%2Fwww.ideastore.dev%2Fplain-page.html&quot;,&quot;expectedSubstring&quot;:&quot;Rate limit&quot;,&quot;multi&quot;:11}">Run it</button></p>
+<div class="attack-result" data-for="rate-limit"></div>
+
+<p><strong>Warning:</strong> Running this attack consumes <code class="language-plaintext highlighter-rouge">demo.ideastore.dev</code>’s rate-limit budget for the next 60 seconds. Other defense demos clicked within that window will also return 429 — that is the rate limit working, not their specific defenses failing.</p>
+
+            </article>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <footer style="padding: 1rem; text-align: center; border-top: 1px solid #eee;">
+    <small>From the <a href="https://ideastore.dev">Idea Store</a> and <a href="https://stucco.software/">Stucco Software</a></small>
+  </footer>
+  </body>
+</html>

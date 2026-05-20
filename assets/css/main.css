@@ -1,0 +1,122 @@
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: "Times New Roman", serif;
+  font-size: 1.2rem;
+}
+
+a:hover {
+  text-decoration: underline 1px;
+}
+
+div.header {
+  border-bottom: 1px solid;
+}
+
+#backlinks {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+#backlinks summary {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+h1, h2, h3, h4 {
+  /* font-family: 'Courier New', Courier, monospace; */
+}
+
+.octo {
+  display: inline-block; /* Ensure the element is treated as a block-level element */
+  transition: transform 0.5s ease;
+  margin-right: 5px;
+  transform: rotate(30deg);
+  cursor: pointer;
+}
+.octo.big {
+  height: 50px;
+  float: left;
+}
+
+.octo:hover {
+  transform: rotate(0deg);
+}
+
+.frame__body {
+  margin: 15px;
+}
+
+#backlinks-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.menu-checkbox {
+  display: none;
+}
+
+.menu-button {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.menu-content {
+  display: none;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  position: fixed;
+  right: 0px;
+  width: 100vw;
+}
+
+.menu-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-content li {
+  margin: 10px 0;
+}
+
+.menu-content a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu-checkbox:checked + .menu-button + .menu-content {
+  display: block;
+}
+
+.subtitle * {
+  font-size: 1.5rem;
+}
+
+iframe {
+  height: unset;
+  min-height: 500px;
+}
+
+web-ring {
+  --ring-background: white;
+}
+
+footer {
+  padding: 3rem;
+  background-color: aliceblue;
+}
+footer h6 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+* {
+  --octo-font: "Courier", monospace;
+}
+
+/*# sourceMappingURL=main.css.map */
