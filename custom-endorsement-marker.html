@@ -3,17 +3,19 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
-  <meta name="description" content="Multipasses are reusable, shareable query objects that drive OP web components and feeds.">
+  <meta name="description" content="You can flag your page as OK index by outside services if you can't or don't want to send the request from the page itself. Without the flag, it won't be scanned.">
   <meta property="og:image" content="https://nimdaghlian.github.io/devdemo/assets/octomark.png">
   <meta name="keyword" content="keywordOnlyDemo">
 
 
 
+    <meta content='test-marker-123'><meta name='robots' content='noindex, nofollow'>
 
-  <link rel="canonical" href="https://nimdaghlian.github.io/devdemo/multipasses">
+
+  <link rel="canonical" href="https://nimdaghlian.github.io/devdemo/custom-endorsement-marker">
 
 
-  <title>Multipasses - OP DEV DEMO</title>
+  <title>Custom Indexing Policy - OP DEV DEMO</title>
   <link rel="stylesheet" href="https://nimdaghlian.github.io/devdemo/assets/css/main.css ">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://kit.fontawesome.com/9fda07d5f7.js" crossorigin="anonymous"></script>
@@ -28,42 +30,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
 
   
-    
-
-<link rel="preload" as="fetch" href="https://next.octothorp.es/?uri=https://nimdaghlian.github.io/devdemo/multipasses">
-
-
-
-
-<script
-async=""
-defer=""
-type="module"
-src="https://next.octothorp.es/components/octo-thorpe.js"></script>
-<script
-async=""
-defer=""
-type="module"
-data-register="https://next.octothorp.es/"
-src="https://next.octothorp.es/ring.js"></script>
-<script
-async=""
-defer=""
-type="module"
-src="https://next.octothorp.es/components/octo-backlinks.js"></script>
-
-
-    <link rev="octo:octothorpes" href="*">
-    <link rev="octo:octothorpes" href="https://demo.ideastore.dev">
-
-
-  
 
   <link rel="stylesheet" href="https://nimdaghlian.github.io/devdemo/assets/css/main.css"" />
     
       <link rel="octo:octothorpes" href="demo" >
     
-      <link rel="octo:octothorpes" href="multipass" >
+      <link rel="octo:octothorpes" href="indexing" >
     
       <link rel="octo:endorses" href="https://octothorpenty.glitch.me/">
   
@@ -138,13 +110,13 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
         <div class="col-md-4"></div>
         <div class="col-md-7 offset-4 ml-3">
           <h1 class="octo big">&num;</h1>
-          <h1 class="headline-3">Multipasses</h1>
-          <div class="font-secondary subtitle"><p>Multipasses are reusable, shareable query objects that drive OP web components and feeds.</p>
+          <h1 class="headline-3">Custom Indexing Policy</h1>
+          <div class="font-secondary subtitle"><p>You can flag your page as OK index by outside services if you can’t or don’t want to send the request from the page itself. Without the flag, it won’t be scanned.</p>
 </div>
           
           <div class="mt-1" style="display: flex; align-items: center; gap: 0.75rem;">
             
-            <span class="tag tag--dark" style="font-size: 1rem;">v0.6</span>
+            <span class="tag tag--dark" style="font-size: 1rem;">v0.7</span>
             
           </div>
           
@@ -154,7 +126,7 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
       <div class="text-gray-800">
         <p><strong>Related documentation</strong></p>
         <section class="demo-docs-backlinks"
-                 data-url="https://nimdaghlian.github.io/devdemo/multipasses"
+                 data-url="https://nimdaghlian.github.io/devdemo/custom-endorsement-marker"
                  data-server="https://next.octothorp.es/">
         </section>
       </div>
@@ -249,7 +221,7 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
                   
                      <section class="demo-record">
   <div class="op-page-record"
-       data-url="https://nimdaghlian.github.io/devdemo/multipasses"
+       data-url="https://nimdaghlian.github.io/devdemo/custom-endorsement-marker"
        data-server="https://next.octothorp.es/">
     <noscript>JavaScript required to show the indexed record.</noscript>
   </div>
@@ -425,7 +397,7 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
                 <div class="text-gray-800">
                   <p><strong>BACKLINKS</strong></p>
                   <section class="demo-backlinks"
-         data-url="https://nimdaghlian.github.io/devdemo/multipasses"
+         data-url="https://nimdaghlian.github.io/devdemo/custom-endorsement-marker"
          data-server="https://next.octothorp.es/">
   <noscript>JavaScript required to show backlinks.</noscript>
 </section>
@@ -525,7 +497,11 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
 
 
   <section class="demo-commentary">
-    <p>You can embed a MultiPass reader or a pre-loaded MultiPass as an image on your page. This lets you store custom searches, like your own algorithm, and share them with others. This page shows the pre-loaded example, and a multipass stored in an image, and a multipass reader component that will display results when the multipass is dropped into it.</p>
+    <p>This page does not send any request to the OP server. However, it includes markup that tells any OP client that scans it that it consents to being scanned by the server it specifies. This is useful if you’re using a system that doesn’t let you add JavaScript, edit the head of the document, or if you want to make an OP client that indexes pages at its own cadence.</p>
+
+<p><em>AND</em></p>
+
+<p>It includes a custom marker that an OP client can use as an additional flag to allow indexing. It can even use standard “robots” flags like <code class="language-plaintext highlighter-rouge">noindex,nofollow</code>, which would normally prevent it from being indexed.</p>
 
 
   </section>
@@ -536,48 +512,11 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
   <section class="demo-live">
     <h3>In action on this page</h3>
     
+<meta content="test-marker-123" />
 
-<h2 id="pre-loaded-multipass">Pre-loaded multipass</h2>
+<meta name="robots" content="noindex, nofollow" />
 
-<p>Click to load.</p>
-
-<octo-multipass-loader gif="assets/wwo2025MP.gif" render="list"></octo-multipass-loader>
-
-<h2 id="multipass-stored-in-a-gif">Multipass stored in a gif</h2>
-
-<p><img src="assets/wwo2025MP.gif" alt="A pixelated book with a knowledge graph animation on it. This image embeds a query string known as a MultiPass." /></p>
-
-<h2 id="plain-multipass-loader">Plain multipass loader</h2>
-
-<p>This one has a separate target defined on the page for the results, like the <a href="https://www.lexaloffle.com/pico-8.php">Pico8 cartridge loader</a>.</p>
-
-<octo-multipass-loader target="#results"></octo-multipass-loader>
-
-<div id="results" style="border: 4px dotted yellow; min-height: 80px; margin: 20px;"></div>
-<script type="module" src="https://octothorp.es/components/octo-multipass-loader.js"></script>
-
-<!-- custom styling -->
-
-<style>
-  octo-multipass-loader {
-    /* Override colors */
-    --octo-primary: #ff6b6b;
-    --octo-primary-hover: #ff5252;
-    --octo-background: #fafafa;
-    --octo-text: #2c3e50;
-    
-    /* Override typography */
-    --octo-font: 'Georgia', serif;
-    --octo-font-size-base: 1.125rem;
-    
-    /* Override spacing */
-    --octo-spacing: 1.5rem;
-    --octo-radius: 8px;
-    
-    /* Custom shadows */
-    --octo-shadow-small: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-</style>
+<link rel="octo:index" href="https://octothorp.es/" />
 
 
   </section>
@@ -585,47 +524,11 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
   
   <section class="demo-source">
     <h3>Raw HTML</h3>
-    <pre><code class="language-html">&lt;h2 id=&quot;pre-loaded-multipass&quot;&gt;Pre-loaded multipass&lt;/h2&gt;
+    <pre><code class="language-html">&lt;meta content=&quot;test-marker-123&quot; /&gt;
 
-Click to load.
+&lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot; /&gt;
 
-&lt;octo-multipass-loader gif=&quot;assets/wwo2025MP.gif&quot; render=&quot;list&quot;&gt;&lt;/octo-multipass-loader&gt;
-
-&lt;h2 id=&quot;multipass-stored-in-a-gif&quot;&gt;Multipass stored in a gif&lt;/h2&gt;
-
-&lt;img src=&quot;assets/wwo2025MP.gif&quot; alt=&quot;A pixelated book with a knowledge graph animation on it. This image embeds a query string known as a MultiPass.&quot; /&gt;
-
-&lt;h2 id=&quot;plain-multipass-loader&quot;&gt;Plain multipass loader&lt;/h2&gt;
-
-This one has a separate target defined on the page for the results, like the &lt;a href=&quot;https://www.lexaloffle.com/pico-8.php&quot;&gt;Pico8 cartridge loader&lt;/a&gt;.
-
-&lt;octo-multipass-loader target=&quot;#results&quot;&gt;&lt;/octo-multipass-loader&gt;
-
-&lt;div id=&quot;results&quot; style=&quot;border: 4px dotted yellow; min-height: 80px; margin: 20px;&quot;&gt;&lt;/div&gt;
-&lt;script type=&quot;module&quot; src=&quot;https://octothorp.es/components/octo-multipass-loader.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- custom styling --&gt;
-
-&lt;style&gt;
-  octo-multipass-loader {
-    /* Override colors */
-    --octo-primary: #ff6b6b;
-    --octo-primary-hover: #ff5252;
-    --octo-background: #fafafa;
-    --octo-text: #2c3e50;
-    
-    /* Override typography */
-    --octo-font: &#39;Georgia&#39;, serif;
-    --octo-font-size-base: 1.125rem;
-    
-    /* Override spacing */
-    --octo-spacing: 1.5rem;
-    --octo-radius: 8px;
-    
-    /* Custom shadows */
-    --octo-shadow-small: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-&lt;/style&gt;</code></pre>
+&lt;link rel=&quot;octo:index&quot; href=&quot;https://octothorp.es/&quot; /&gt;</code></pre>
   </section>
   
 
