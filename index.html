@@ -550,7 +550,7 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
   <li><a href="custom-harmonizer">Custom Harmonizer</a> — Use a named harmonizer to turn standard HTML meta keywords into octothorpes — no OP-specific markup required. <code class="language-plaintext highlighter-rouge">(v0.6)</code></li>
   <li><a href="relationship-terms">Hashtags on Links</a> — Bookmarks, citations, and other typed relationships can carry their own hashtag terms, independent of the page’s tags. <code class="language-plaintext highlighter-rouge">(v0.6)</code></li>
   <li><a href="link-types">Link Types</a> — OP supports typed page-to-page relationships: bookmarks, citations, buttons, and custom types. <code class="language-plaintext highlighter-rouge">(v0.6)</code></li>
-  <li><a href="mentions">Mentions</a> — A mention is a typed link: an explicit rel=”octo:mentions” that OP stores as its own relationship, separate from plain links. <code class="language-plaintext highlighter-rouge">(v0.7)</code></li>
+  <li><a href="mentions">Mentions</a> — Mentions are now their own link types with their own syntax. <code class="language-plaintext highlighter-rouge">(v0.7)</code></li>
   <li><a href="multi-server">Multiple Servers</a> — A blog can post the same octothorpes to more than one server. Each server keeps its own independent index.</li>
   <li><a href="multi-platform">Octothorpe Anywhere</a> — Implementing Octothorpes is really easy. Here are some sites on other platforms that already have it.</li>
   <li><a href="pure-http">Octothorpe Without Javascript</a> — If you don’t want to use javascript or display #s on the front end, you can use the pure-HTTP method.</li>
@@ -567,7 +567,7 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
   <li><a href="custom-endorsement-marker">Custom Indexing Policy</a> — You can flag your page as OK index by outside services if you can’t or don’t want to send the request from the page itself. Without the flag, it won’t be scanned. <code class="language-plaintext highlighter-rouge">(v0.7)</code></li>
   <li><a href="image-indexing">Image Indexing</a> — OP now extracts and stores image metadata from indexed pages, making images available in API responses and on server listings. <code class="language-plaintext highlighter-rouge">(v0.6)</code></li>
   <li><a href="indexing-policy">Indexing Policy</a> — You can flag your page as OK index by outside services if you can’t or don’t want to send the request from the page itself. Without the flag, it won’t be scanned. <code class="language-plaintext highlighter-rouge">(v0.6)</code></li>
-  <li><a href="rich-content">Rich Content</a> — Mark an element with data-octo-content=”rich” or the octo-content class, and OP stores its sanitized HTML as the page’s richContent. <code class="language-plaintext highlighter-rouge">(v0.7)</code></li>
+  <li><a href="rich-content">Rich Content</a> — The Rich Content Document Record is included in the defaults in our relay, and lets you mark any element to be stored as sanitized HTML in the triplestore. <code class="language-plaintext highlighter-rouge">(v0.7)</code></li>
 </ul>
 
 <h2 id="querying">Querying</h2>
