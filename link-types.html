@@ -400,6 +400,20 @@ src="https://next.octothorp.es/components/octo-backlinks.js"></script>
         wrapper.appendChild(p)
       }
 
+      const tinyDoc = document.createElement('p')
+      tinyDoc.style.marginTop = '0.5rem'
+      const a = document.createElement('a')
+      a.href = `${server}/get/everything/posted/tlo-doc?s=${encodeURIComponent(url)}&match=exact`
+      a.textContent = 'Get record as Tiny Little Office Doc'
+      a.target = '_blank'
+      a.rel = 'noopener'
+      tinyDoc.appendChild(a)
+      wrapper.appendChild(tinyDoc)
+    } catch (e) {
+      const p = document.createElement('p')
+      p.appendChild(makeEl('em', `Error loading record: ${e.message}`))
+      wrapper.appendChild(p)
+    }
       return wrapper
     }
 
