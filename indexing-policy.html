@@ -370,12 +370,12 @@
 
         const tinyDoc = document.createElement('p')
         tinyDoc.style.marginTop = '0.5rem'
-        const a = document.createElement('a')
-        a.href = `${server}/get/everything/posted/tlo-doc?s=${encodeURIComponent(url)}&match=exact`
-        a.textContent = 'Get record as Tiny Little Office Doc'
-        a.target = '_blank'
-        a.rel = 'noopener'
-        tinyDoc.appendChild(a)
+        const newa = document.createElement('a')
+        newa.href = `${server}/get/everything/posted/tlo-doc?s=${encodeURIComponent(url)}&match=exact`
+        newa.textContent = 'Get record as Tiny Little Office Doc'
+        newa.target = '_blank'
+        newa.rel = 'noopener'
+        tinyDoc.appendChild(newa)
         wrapper.appendChild(tinyDoc)
 
       } catch (e) {
