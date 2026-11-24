@@ -1,0 +1,12 @@
+{
+  "@id": "https://nimdaghlian.github.io/devdemo/link-types",
+  "title": "Link Types - OP DEV DEMO",
+  "description": "OP supports typed page-to-page relationships: bookmarks, citations, buttons, and custom types.",
+  "image": "https://nimdaghlian.github.io/devdemo/assets/octomark.png",
+  "octothorpes": [
+    "demo",
+    "blobject-partial",
+    { "type": "bookmark", "uri": "https://aftermath.site/website-musk-twitter-facebook-internet" },
+    { "type": "bookmark", "uri": "https://docs.octothorp.es/how-to-write-statements", "terms": ["partial-fixture"] }
+  ]
+}
